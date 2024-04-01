@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	input[name=it_first],input[name=it_last]{	
+		width: 40px
+	}
+	#mydiv{
+		height: 100px;
+		overflow-y: hidden;
+	}
+
+</style>
+<script src="jquery-3.7.1.js"></script>
+<script>
+	function myclick(){
+		var obj_fs = $("input[name=it_first]");
+		var obj_ls = $("input[name=it_last]");
+		var obj_div = $("#mydiv");
+			
+ 		var fs = obj_fs.val();
+		var ls = obj_ls.val();
+	
+		var ifs = parseInt(fs);
+		var ils = parseInt(ls);
+		
+		console.log(ifs, ils);
+		
+		var txt ="";
+		
+		for(var i=ifs; i<=ils; i++){
+			txt += getStar(i);
+		}
+		
+		obj_div.html(txt);
+		
+		// 입력된 범위에 따라 높이를 동적으로 설정
+		var lineHeight = 15; // 각 줄의 높이
+		var newHeight = (ils - ifs + 1) * lineHeight;
+		obj_div.css('height', newHeight + 'px')
+
+	}; 
+	function getStar(cnt){
+		var ret ="";
+		for(var i=0; i<cnt; i++){
+			ret += "*";
+		}
+		ret += "<br>";
+		return ret;
+	}
+	
+
+</script>
+</head>
+<body>
+	<table border="1px">
+		<tr>
+			<td>첫별수: </td>
+			<td>
+				<input type="text" name="it_first"/>
+			</td>
+		</tr>
+		<tr>
+			<td>끝별수: </td>
+			<td>
+				<input type="text" name="it_last"/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="button" value="별그리기" onclick="myclick()"/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div id="mydiv"></div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

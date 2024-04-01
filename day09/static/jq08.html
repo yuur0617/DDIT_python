@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	#itMine,#itCom,#itResult{
+		width: 30px
+	}
+</style>
+<script src="jquery-3.7.1.js"></script>
+<script>
+	function myclick(){
+		var obj_mine = $("#itMine");
+		var obj_com = $("#itCom")
+		var obj_result = $("#itResult");
+		
+		var mine = obj_mine.val();
+		var com = obj_com.val();
+		var result = obj_result.val();
+		
+		var rnd = Math.random();
+		
+		if(rnd > 0.66){
+			com = "가위";
+		}else if(rnd > 0.33){
+			com = "바위";
+		}else{
+			com = "보";
+		}
+		obj_com.val(com); 
+		
+		if(mine=="가위" && com=="가위"){result = "무승부";}
+		if(mine=="가위" && com=="바위"){result = "패배";}
+		if(mine=="가위" && com=="보"){result = "승리";}
+		
+		if(mine=="바위" && com=="가위"){result = "승리";}
+		if(mine=="바위" && com=="바위"){result = "무승부";}
+		if(mine=="바위" && com=="보"){result = "패배";}
+		
+		if(mine=="보" && com=="가위"){result = "패배";}
+		if(mine=="보" && com=="바위"){result = "승리";}
+		if(mine=="보" && com=="보"){result = "무승부";}
+		
+		obj_result.val(result); 
+	}
+	$(document).ready(function(){
+		$("#btn").on("click", function(event) {  
+			myclick();
+		});
+	});
+</script>
+</head>
+<body>
+	<table border="1px">
+		<tr>
+			<td>나 :</td>
+			<td>
+				<input type="text" id="itMine"/>
+			</td>
+		</tr>
+		<tr>
+			<td>컴 :</td>
+			<td>
+				<input type="text" id="itCom"/>
+			</td>
+		</tr>
+		<tr>
+			<td>결과 :</td>
+			<td>
+				<input type="text" id="itResult"/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="button" value="게임하기" id="btn"/>
+			</td>
+		</tr>
+		
+	</table>
+</body>
+</html>

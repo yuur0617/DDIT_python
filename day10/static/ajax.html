@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="jquery-3.7.1.js"></script>
+<script type="text/javascript">
+
+function my_ajax(){
+	var params = {
+			'menu':'짬뽕'
+	}
+	
+	$.ajax({
+		type: 'POST', //정보 보낼 방식
+		url: '/ajax', //요청주고 받고할 페이지
+		data: JSON.stringify(params), // 객체 타입의 데이터 문자열로 보내기 
+		dataType : 'JSON', 
+		contentType: "application/json",
+		success: function(res){
+			console.log(res)
+		}
+	});
+		//ajax end
+};
+
+</script>
+</head>
+<body>
+	<a href="javascript:my_ajax()">ajax</a>
+</body>
+</html>
